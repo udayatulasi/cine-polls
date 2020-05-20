@@ -1,0 +1,50 @@
+/* 
+html,
+body {
+background-color: rgb(255, 255, 255);
+color: lightblue;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 20px;
+}
+
+.row{
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.admin{
+    font-size: 40px;
+    margin-left: 10px;
+}
+
+.main-nav{
+    
+    list-style: none;
+    margin-top: 55px;
+}
+.main-left{
+    float:right;
+    margin-left: 40px;
+}
+.main-nav li{
+    display: inline-block;
+    margin-left: 20px;
+} */
+
+.btn{
+    color: #e67e22;
+}
+
+
+.pad{
+    margin-top: 30px;
+}
+
+.pad2{
+    margin-top: 80px;
+}
+
+.del{
+    font-size: 25px;
+    vertical-align: middle;
+}
