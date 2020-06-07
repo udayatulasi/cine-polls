@@ -120,6 +120,8 @@
       };
 
       function displayMovies (movies) {
+          
+
         html = '<form class="movieRating"><input type ="submit" class="after-submit"><table class="table"><br></br><thead><tr><th scope="col">#</th><th scope="col">Movie</th><th scope="col">Description</th><th scope="col">priority</th></tr></thead></table></form> ';
         document.querySelector('.primary-submit').insertAdjacentHTML('afterend', html);
 
@@ -128,6 +130,8 @@
           document.querySelector('.table').insertAdjacentHTML('beforeend', newhtml);
           
         }
+        user  = `<br><form class="form-inline primary-form" id="userName"><div class="form-group mb-2"><label for="staticEmail2" class="sr-only">Email</label><input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="Username :"></div><div class="form-group mx-sm-3 mb-2"><label for="inputPassword2" class="sr-only">Password</label><input type="password" class="form-control second-submit" id="inputPassword2" placeholder="Username"></div></form>`;
+         document.querySelector('.table').insertAdjacentHTML('beforeend', user);
       };
 
       function addDisplay () {
@@ -137,6 +141,8 @@
          movie_rating.onsubmit = function(e){
           e.preventDefault()
         var ratingArray = [];
+        username = document.querySelector('.second-submit').value;
+        ratingArray.push(username);
            
         var display = 0;
         var count_1 = 0;
