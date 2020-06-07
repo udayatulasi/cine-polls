@@ -83,6 +83,10 @@
             p_3: 0
           }
         ]
+
+        
+       
+         
         
         
        
@@ -131,7 +135,7 @@
         
          var movie_rating = document.querySelector('.movieRating')
          movie_rating.onsubmit = function(e){
-          e.preventDefault();
+          e.preventDefault()
         var ratingArray = [];
            
         var display = 0;
@@ -200,17 +204,3 @@ if(count_1 === 1 && count_2 === 1 && count_3 === 1){
         }
       }
     };
-    
-    
-   
- 
- 
-    
- 
- 
- 
-   
-   
-
-  
- 
