@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>admin</title>
+  <link href="/public/css/style.css" rel="stylesheet" type="text/css">
+  <link href="/public/css/bootstrap.css" rel="stylesheet" type="text/css">
+  <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>>
+</head>
+
+<body>
+
+  <div class="container">
+
+
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand">Admin</a>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="navbar-brand btn" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="navbar-brand btn" href="#">Stats</a>
+            </li>
+
+          </ul>
+        </div>
+      </nav>
+    </nav>
+    <form class="form-inline login pad ">
+      <div class="form-group mb-2">
+        <label for="staticEmail2" class="sr-only">Email</label>
+        <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="admin@polls.com">
+      </div>
+      <div class="form-group mx-sm-3 mb-2">
+        <label for="inputPassword2" class="sr-only password">Password</label>
+        <input type="password" class="inputPassword" id="inputPassword" name="password" placeholder="Password">
+      </div>
+      <button type="submit" class="btn btn-primary verify   mb-2" id="verify"> verify</button>
+    </form>
+
+
+
+    <div class="mainpage d-none  pad">
+      <div class="alert alert-success pad animated fadeOut" role="alert">
+        <strong>Well done!</strong> You successfully logged in.
+      </div>
+
+      <div class="container pad">
+        <button type="button" class="btn btn-success addMovie">Add</button>
+        <div class="container pad d-none addMovieDetails ">
+          <button type="button" class="btn btn-danger cancel">CANCEL</button>
+          <form class="movieDetails pad">
+            <div class="form-group  d-inline-block">
+              <label for="formGroupExampleInput">movie name</label>
+              <input type="text" class="form-control" id="formGroupExampleInput" name='movieName'
+                placeholder="Example input">
+            </div>
+            <div class="form-group">
+              <label for="formGroupExampleInput2">Description</label>
+              <textarea type="text" class="form-control" id="formGroupExampleInput2" name='movieDescription'
+                placeholder="Another input" rows="4" cols="50"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">submit</button>
+          </form>
+        </div>
+      </div>
+
+      <table class="table table-striped container">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Movie</th>
+            <th>Description</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody class='movie-list'>
+          <!-- <tr>
+      <th scope="row">1</th>
+      <td><p class="d-inline-block">marks</p><input class="form-control d-none" type="text" placeholder="Default input"> </td>
+      <td><p class="d-inline-block">Closes an alert by removing it from the DOM. If the .fade and .show classes are present on the element, the alert will fade out before it is removed.</p><input class="form-control d-none" type="text" placeholder="Default input"></td>
+      <td><button type="button" class="btn btn-warning d-inline-block"><ion-icon class="del" name="create-outline"></ion-icon></button><button type="button" class="btn btn-success d-none"><ion-icon class="del"name="checkmark-circle-outline"></ion-icon></button> </td>
+      <td> <button type="button" class="btn btn-danger"><ion-icon class="del"name="close-circle-outline"></ion-icon></button></td>
+    </tr> -->
+        </tbody>
+      </table>
+      <div class="container pad2">
+        <div class="row">
+          <div class="col-sm d-inline-block">
+            <div id="piechart1"></div>
+          </div>
+          <div class="col-sm d-inline-block">
+
+            <div id="piechart2"></div>
+          </div>
+          <div class="col-sm d-inline-block">
+
+            <div id="piechart3"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>user Name</th>
+              <th>movie 1</th>
+              <th>movie 2</th>
+              <th>movie 3</th>
+            </tr>
+          </thead>
+          <tbody class="user_list">
+            <!-- <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td> 2</td>
+        <td> 3</td>
+      </tr> -->
+
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+<script src="/public/js/script.js"></script>
+
+</html>
