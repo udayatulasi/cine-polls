@@ -48,3 +48,8 @@ font-size: 20px;
     font-size: 25px;
     vertical-align: middle;
 }
+
+.primary-form{
+    width: 50px;
+    display: inline;
+}
