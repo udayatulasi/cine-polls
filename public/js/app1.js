@@ -161,6 +161,8 @@ function displayMovies(movies) {
     document.querySelector('.table').insertAdjacentHTML('beforeend', newhtml);
 
   }
+  user = `<br><form class="form-inline  form-group mx-sm-3 mb-2" id="userName"><div class="form-group mb-2"><label for="staticEmail2" class="sr-only">Email</label><input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="Username :"></div><div class="form-group mx-sm-3 mb-2"><label for="inputPassword2" class="sr-only">Password</label><input type="text" class="primary-form second-submit" id="inputPassword2" placeholder="Username"></div></form>`;
+  document.querySelector('.table').insertAdjacentHTML('beforebegin', user);
 };
 
 function addDisplay() {
