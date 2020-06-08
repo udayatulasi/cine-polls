@@ -1,38 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Statistics</title>
-    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Statistics</title>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="./css/user-style.css">
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
 
-    <!-- <script type="text/javascript" src="app1.js"></script>  -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+  </script>
+  <link rel="stylesheet" type="text/css" href="./css/user-style.css">
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>>
+
+  <!-- <script type="text/javascript" src="app1.js"></script>  -->
 
 </head>
+
 <body>
 
-   <div class="container pad-1">
+  <div class="container pad-1">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">User</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav ml-auto">
-            <a class="nav-item nav-link active" href="#">Polls<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link active" href="#">Statistics</a> 
-          </div>
+      <a class="navbar-brand" href="#">User</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ml-auto">
+          <a class="nav-item nav-link active" href="#">Polls<span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link active" href="#">Statistics</a>
         </div>
-      </nav>
-      <br>
-      <!-- <form class="form-inline">
+      </div>
+    </nav>
+    <br>
+    <!-- <form class="form-inline">
         <div class="form-group mb-2">
           <label for="staticEmail2" class="sr-only">Email</label>
           <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@example.com">
@@ -42,25 +56,25 @@
           <input type="password" class="form-control" id="inputPassword2" placeholder="Username">
         </div>
       </form> -->
-      <form class="form-inline primary-form" id="userName">
-        <div class="form-group mb-2">
-          <label for="staticEmail2" class="sr-only">Email</label>
-          <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="Password">
-        </div>
-        <div class="form-group mx-sm-3 mb-2">
-          <label for="inputPassword2" class="sr-only">Password</label>
-          <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
-          <span id="error" class="error-class"></span>
-        </div>
-        <!-- <button type="submit" class="btn btn-primary mb-2" id="primary-Btn">submit</button> -->
-        <!-- <button type="button" class="btn btn-primary primary-submit">Submit</button> -->
-        
-      </form>
-      <br>
-      <br>
-      <button type="button" class="btn btn-primary primary-submit">Submit</button>
-      
-      <!-- <br>
+    <form class="form-inline primary-form" id="userName">
+      <div class="form-group mb-2">
+        <label for="staticEmail2" class="sr-only">Email</label>
+        <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="Password">
+      </div>
+      <div class="form-group mx-sm-3 mb-2">
+        <label for="inputPassword2" class="sr-only">Password</label>
+        <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+        <span id="error" class="error-class"></span>
+      </div>
+      <!-- <button type="submit" class="btn btn-primary mb-2" id="primary-Btn">submit</button> -->
+      <!-- <button type="button" class="btn btn-primary primary-submit">Submit</button> -->
+
+    </form>
+    <br>
+    <br>
+    <button type="button" class="btn btn-primary primary-submit">Submit</button>
+
+    <!-- <br>
       
     </div>
     <br>
@@ -83,13 +97,13 @@
                 </div>
       </div>
        </div> -->
-       
-       <!-- <select id="first-choice">
+
+    <!-- <select id="first-choice">
         <option selected value="base">Please Select</option>
         <option value="beverages">Beverages</option>
         <option value="snacks">Snacks</option>
       </select> -->
-<!-- 
+    <!-- 
         
       <form class='movieRating'>
        <input type ="submit" > 
@@ -118,6 +132,6 @@
       
      -->
 </body>
- <script type="text/javascript" src="./js/app1.js"></script> 
-</html>
+<script type="text/javascript" src="./js/app1.js"></script>
 
+</html>

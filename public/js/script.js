@@ -11,14 +11,14 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var db = firebase.firestore();
 
-x = db.collection("movies");
+moviesref = db.collection("movies");
+ses_wend = db.collection("session_weekend")
 var da = 0;
-da = x.get()
+da = moviesref.get()
   .then((ss) => {
     d = ss.docs;
     // return d
-    x = JSON.parse(d[6].id)
-    console.log(typeof x)
+    x = d[2].id
     ex(x)
     // d.forEach((i) => {
     //   console.log(i.id);
@@ -28,9 +28,17 @@ da = x.get()
     console.log("Error getting documents", err);
   });
 
+function get_session() {
+  ses_wend.get().then((ss) => {
+    lis = ss.docs
+
+  })
+}
+get_session()
+
 function ex(x) {
-  x.doc(d)
-    .set(docDat0a)
+  moviesref.doc(x)
+    .set(data)
     .then(function () {
       console.log("Document successfully written!");
     });
