@@ -1,3 +1,4 @@
+
 const firebaseConfig = {
   apiKey: "AIzaSyBQfxqDt6pmn-Tm-d2iQmQIDQps8gKC8GI",
   authDomain: "cine-polling.firebaseapp.com",
@@ -9,399 +10,471 @@ const firebaseConfig = {
   measurementId: "G-PLEFSGD3PP",
 };
 firebase.initializeApp(firebaseConfig);
+
 var db = firebase.firestore();
-
-x = db.collection("movies");
+var sessionWeekendRef = db.collection("session_weekend")
+var moviesRef = db.collection("movies");
 var da = 0;
-da = x.get()
-  .then((ss) => {
-    d = ss.docs;
-    // return d
-    x = JSON.parse(d[6].id)
-    console.log(typeof x)
-    ex(x)
-    // d.forEach((i) => {
-    //   console.log(i.id);
-    // });
-  })
-  .catch((err) => {
-    console.log("Error getting documents", err);
-  });
+// da = x.get()
+//   .then((ss) => {
+//     d = ss.docs;
+//     // return d
+//     // x = JSON.parse(d[6].id)
+//     // console.log(x)
+//     // ex(x)
+//     d.forEach((i) => {
+//       console.log(i.id);
+//     });
+//   })
+//   .catch((err) => {
+//     console.log("Error getting documents", err);
+//   });
 
-function ex(x) {
-  x.doc(d)
-    .set(docDat0a)
-    .then(function () {
-      console.log("Document successfully written!");
-    });
-}
-date = new Date();
-d = JSON.stringify(date);
-var docDat0a = {
-  0: {
-    count: 0,
-    description: "",
-    name: "first",
-    p_1: 0,
-    p_2: 0,
-    p_3: 0,
-  },
-  1: {
-    count: 0,
-    description: "",
-    name: "first",
-    p_1: 0,
-    p_2: 0,
-    p_3: 0
-  },
-  users: [
-    1 - 1,
-    1 - 2
-  ]
-}
 
-google.charts.load("current", {
-  packages: ["corechart"],
-});
-var userdata = [{
-    id: 1,
-    user_name: "udaya",
-    p1: 5,
-    p2: 6,
-    p3: 9,
-  },
-  {
-    id: 1,
-    user_name: "udaya",
-    p1: 5,
-    p2: 6,
-    p3: 9,
-  },
-  {
-    id: 1,
-    user_name: "udaya",
-    p1: 5,
-    p2: 6,
-    p3: 9,
-  },
-];
-var backcontrol = (function () {
-  var Movie = function (ID, Name, Description) {
-    this.ID = ID;
-    this.Name = Name;
-    this.Description = Description;
-    this.Count = 0;
-    this.p_1 = 0;
-    this.p_2 = 0;
-    this.p_3 = 0;
-  };
-
-  var data = {
-    cinema: [{
-        ID: 1,
-        Name: "hdghjs",
-        Description: "djsj",
-        Count: 0,
-        p_1: 4,
-        p_2: 2,
-        p_3: 3,
-      },
+google.charts.load('current', {'packages':['corechart']});    
+     var userdata = [
       {
-        ID: 2,
-        Name: "hdghjs",
-        Description: "djsj",
-        Count: 0,
-        p_1: 4,
-        p_2: 2,
-        p_3: 3,
-      },
-      {
-        ID: 3,
-        Name: "hdghjs",
-        Description: "djsj",
-        Count: 0,
-        p_1: 4,
-        p_2: 2,
-        p_3: 3,
-      },
-    ],
-  };
+            id: 1,
+            user_name: "udaya",
+            p1: 5,
+            p2: 6,
+            p3: 9,
+       },
+       {
+        id: 1,
+        user_name: "udaya",
+        p1: 5,
+        p2: 6,
+        p3: 9,
+       },
+       {
+        id: 1,
+        user_name: "udaya",
+        p1: 5,
+        p2: 6,
+        p3: 9,
+       },
+       ];
+  var backcontrol =(function(){
 
-  var editd = function (n, d, idn) {
-    var film;
-    data.cienma.forEach((e) => {
-      if (idn === e.ID) {
-        e.Name = n;
-        e.Description = d;
-        film = e;
-      }
-    });
-    return film;
-  };
+    var data ={
+        cienma : [],
+    };
 
-  return {
-    addItem: function (name, desp) {
-      var ID;
+    var session_Ddown =[]
+
+    var editd = function(n,d,idn){
+      var film;
+      data.cienma.forEach(e =>
+        {
+          if(idn === e.id){
+            e.Name = n;
+            e.Description = d;
+            film= e;
+          }
+        });
+            return film;
+    };
+
+    return{
+
+      UpdateMovies: function(Data){
+          data.cienma=Data[0];
+      },
+
+      updateSession:function(updated){
+          session_Ddown = updated;
+          // console.log(session_Ddown)
+      },
+
+      session_data:function(){
+        return session_Ddown;
+      },
+
+      addItem: function(name,desp){
+        var ID;
+        console.log(data.cienma.length)
       if (data.cienma.length > 0) {
-        ID = data.cienma[data.cienma.length - 1].ID + 1;
+        ID = parseInt(data.cienma[data.cienma.length - 1].id) + 1;
       } else {
         ID = 1;
       }
-      var newMovie = new Movie(ID, name, desp);
-      data.cienma.push(newMovie);
-      return newMovie;
-    },
+        var newMovie = {
+          Name : name,
+          Description :desp,
+          Count : 0,
+          p_1 : 0,
+          p_2 : 0,
+          p_3 : 0,
+          id : ID,
+        }
+        return newMovie;
+      },
 
-    editDeatils: function (en, ed, eid) {
-      var edit = editd(en, ed, eid);
-      return edit;
-    },
+      editDeatils: function(en,ed,eid){
+         var edit= editd(en,ed,eid);
+         return edit;
+      },
 
-    del: function (idno) {
-      var allId = data.cienma.map((e) => e.ID);
+      del: function(idno)
+      {
+        var allId = data.cienma.map(e => e.id);
 
-      var index = allId.indexOf(idno);
+        var index = allId.indexOf(idno);
 
-      if (index >= 0) {
-        data.cienma.splice(index, 1);
-      }
-
-      console.log(index);
-    },
-
-    pieArray: function () {
-      return data.cienma;
-    },
-  };
-})();
-
-var uicontrol = (function () {
-  var domstrings = {
-    verify: ".verify",
-    inputPass: ".inputPassword",
-    login: ".login",
-    mainpage: ".mainpage",
-    Add: ".addMovie",
-    AddMovie: ".addMovieDetails",
-    cancel: ".cancel",
-    Details: ".movieDetails",
-    displayMovie: ".movie-list",
-    displayUser: ".user_list",
-  };
-
-  var piechart2 = function (objp) {
-    var i;
-    for (i = 1; i <= 3; i++) {
-      var pdata = [
-        ["movie", "count"]
-      ];
-      objp.forEach((e) => {
-        var ename = e.Name;
-        var ecount = parseFloat(i == 1 ? e.p_1 : i == 2 ? e.p_2 : e.p_3);
-        var arrp = [ename, ecount];
-        pdata.push(arrp);
-      });
-      console.log(pdata);
-      drawChart(pdata);
-      google.charts.setOnLoadCallback(drawChart(pdata));
-
-      function drawChart(pdata2) {
-        var data = google.visualization.arrayToDataTable(pdata2);
-        var options = {
-          title: `priority${i}`,
+        if(index >= 0)
+        {
+          data.cienma.splice(index,1);
         };
+      },
 
-        var chart = new google.visualization.PieChart(
-          document.getElementById(`piechart${i}`)
-        );
-
-        chart.draw(data, options);
-      }
-    }
-  };
-  return {
-    getdomstrings: function () {
-      return domstrings;
-    },
-    display: function () {
-      document.querySelector(domstrings.login).classList.add("d-none");
-      document.querySelector(domstrings.mainpage).classList.toggle("d-none");
-      document.querySelector(".animated").classList.add("delay-1s");
+    pieArray: function(){
+      // console.log(data.cienma)
+          return data.cienma;
     },
 
-    addMovie: function (nM) {
-      var html;
+    };
 
-      html = `<tr class= f-${nM.ID}>
+  })();
+
+  var uicontrol =(function(){
+    var domstrings = {
+      verify: '.verify',
+      inputPass: '.inputPassword',
+      login: '.login',
+      mainpage: '.mainpage',
+      Add: '.addMovie',
+      AddMovie:'.addMovieDetails',
+      cancel:'.cancel',
+      Details:'.movieDetails',
+      displayMovie: '.movie-list',
+      displayUser: '.user_list'
+
+    };
+
+    var piechart2 = function(objp)
+    {
+      // console.log(objp)
+      var i;
+      for( i =1;i<=3;i++){
+        var pdata = [['movie','count']]
+          objp.forEach(e =>{
+            var ename = e.Name;
+            var ecount = parseFloat((i==1)? e.p_1:(i==2)?e.p_2:e.p_3)
+            var arrp = [ename,ecount];
+            pdata.push(arrp);
+          })
+          drawChart(pdata);
+          google.charts.setOnLoadCallback(drawChart(pdata));
+
+    
+    function drawChart(pdata2) {
+      var data = google.visualization.arrayToDataTable(pdata2);
+      var options = {
+        title: `priority${i}`
+      };
+
+    var chart = new google.visualization.PieChart(document.getElementById(`piechart${i}`));
+  
+      chart.draw(data, options);
+
+   }
+
+        };
+    };
+
+    
+        return{
+          Display_movie:function(Details){
+              Details[0].forEach((i)=>{
+               this.addMovie(i)
+              })
+          },
+
+      getdomstrings : function(){
+          return domstrings;
+      },
+      display: function(){
+        document.querySelector(domstrings.login).classList.add('d-none');
+        document.querySelector(domstrings.mainpage).classList.toggle('d-none');
+        document.querySelector('.animated').classList.add("delay-1s");
+
+      },
+
+      addMovie: function(nM){
+          var html;
+
+          html = `<tr class= f-${nM.id}>
           <th scope="row">1</th>
-          <td><p class="d-inline-block en0-${nM.ID}">${nM.Name}</p><input class="form-control en1-${nM.ID} d-none" type="text"> </td>
-          <td><p class="d-inline-block ed0-${nM.ID}">${nM.Description}</p><input class="form-control ed1-${nM.ID} d-none" type="text"></td>
-          <td><button type="button" class="btn btn-warning d-inline-block" id="e-${nM.ID}"><ion-icon class="del" name="create-outline"></ion-icon></button><button type="button" id="s-${nM.ID}"class="btn btn-success d-none"><ion-icon class="del"name="checkmark-circle-outline"></ion-icon></button> </td>
-          <td> <button type="button" class="btn btn-danger" id="d-${nM.ID}"><ion-icon class="del"name="close-circle-outline"></ion-icon></button></td>
+          <td><p class="d-inline-block en0-${nM.id}">${nM.Name}</p><input class="form-control en1-${nM.id} d-none" type="text"> </td>
+          <td><p class="d-inline-block ed0-${nM.id}">${nM.Description}</p><input class="form-control ed1-${nM.id} d-none" type="text"></td>
+          <td><button type="button" class="btn btn-warning d-inline-block" id="e-${nM.id}"><ion-icon class="del" name="create-outline"></ion-icon></button><button type="button" id="s-${nM.id}"class="btn btn-success d-none"><ion-icon class="del"name="checkmark-circle-outline"></ion-icon></button> </td>
+          <td> <button type="button" class="btn btn-danger" id="d-${nM.id}"><ion-icon class="del"name="close-circle-outline"></ion-icon></button></td>
         </tr>`;
 
-      document
-        .querySelector(domstrings.displayMovie)
-        .insertAdjacentHTML("beforeend", html);
-      document.querySelector(domstrings.Add).classList.remove("d-none");
-      document.querySelector(domstrings.AddMovie).classList.add("d-none");
-    },
+        document.querySelector(domstrings.displayMovie).insertAdjacentHTML('beforeend',html);
+        document.querySelector(domstrings.Add).classList.remove('d-none');
+        document.querySelector(domstrings.AddMovie).classList.add('d-none');
+            },
 
-    editMovie: function (idno) {
-      // console.log('inedit');
-      var name, desp;
-      // console.log(`en0-${idno}`);
-      name = document.querySelector(`.en0-${idno}`).textContent;
-      desp = document.querySelector(`.ed0-${idno}`).textContent;
-      document.querySelector(`.en0-${idno}`).classList.add("d-none");
-      document.querySelector(`.ed0-${idno}`).classList.add("d-none");
-      document.querySelector(`.en1-${idno}`).value = name;
-      document.querySelector(`.ed1-${idno}`).value = desp;
-      document.querySelector(`.en1-${idno}`).classList.remove("d-none");
-      document.querySelector(`.ed1-${idno}`).classList.remove("d-none");
-      document.querySelector(`#e-${idno}`).classList.add("d-none");
-      document.querySelector(`#e-${idno}`).classList.remove("d-inline-block");
-      document.querySelector(`#s-${idno}`).classList.remove("d-none");
-    },
+      editMovie: function(idno){
+        var name,desp;
+        name = document.querySelector(`.en0-${idno}`).textContent;
+        desp = document.querySelector(`.ed0-${idno}`).textContent;
+        document.querySelector(`.en0-${idno}`).classList.add('d-none');
+        document.querySelector(`.ed0-${idno}`).classList.add('d-none');
+        document.querySelector(`.en1-${idno}`).value = name;
+        document.querySelector(`.ed1-${idno}`).value = desp;
+        document.querySelector(`.en1-${idno}`).classList.remove('d-none');
+        document.querySelector(`.ed1-${idno}`).classList.remove('d-none');
+        document.querySelector(`#e-${idno}`).classList.add('d-none');
+        document.querySelector(`#e-${idno}`).classList.remove('d-inline-block');
+        document.querySelector(`#s-${idno}`).classList.remove('d-none');
+        
+      },
 
-    editMovie2: function (idno2) {
-      var name2, desp2;
-      name2 = document.querySelector(`.en1-${idno2}`).value;
-      desp2 = document.querySelector(`.ed1-${idno2}`).value;
+      editMovie2: function(idno2){
 
-      document.querySelector(`.en1-${idno2}`).classList.add("d-none");
-      document.querySelector(`.ed1-${idno2}`).classList.add("d-none");
-      document.querySelector(`#e-${idno2}`).classList.remove("d-none");
-      document.querySelector(`#s-${idno2}`).classList.add("d-none");
-      // printPiehar()
-      return [name2, desp2];
-    },
+        var name2,desp2;  
+        name2 = document.querySelector(`.en1-${idno2}`).value;
+          desp2 =document.querySelector(`.ed1-${idno2}`).value;
+        document.querySelector(`.en1-${idno2}`).classList.add('d-none');
+        document.querySelector(`.ed1-${idno2}`).classList.add('d-none');
+        document.querySelector(`#e-${idno2}`).classList.remove('d-none');
+        document.querySelector(`#s-${idno2}`).classList.add('d-none');
+        // printPiehar()
+        return[name2,desp2];
 
-    update: function (movie) {
-      document.querySelector(`.en0-${movie.ID}`).innerHTML = movie.Name;
-      document.querySelector(`.ed0-${movie.ID}`).innerHTML = movie.Description;
-    },
+        },
 
-    del: function (idno) {
-      document.querySelector(`.f-${idno}`).remove();
-    },
+        update: function(movie){
+          document.querySelector(`.en0-${movie.id}`).innerHTML = movie.Name;
+          document.querySelector(`.ed0-${movie.id}`).innerHTML = movie.Description;
+        },
 
-    displayUser: function (obj) {
-      obj.forEach((e, i) => {
-        var userHtml = `<tr>
-          <th scope="row">${i + 1}</th>
+        del: function(idno){
+          document.querySelector(`.f-${idno}`).remove();
+        },
+
+        displayUser: function(obj){
+          obj.forEach( (e,i)=>{
+          var userHtml=`<tr>
+          <th scope="row">${i+1}</th>
           <td>${e.user_name}</td>
           <td>${e.p1}</td>
           <td>${e.p2}</td>
           <td>${e.p3}</td>
         </tr>`;
-
-        document
-          .querySelector(domstrings.displayUser)
-          .insertAdjacentHTML("beforeend", userHtml);
+        
+        document.querySelector(domstrings.displayUser).insertAdjacentHTML('beforeend',userHtml);
+      
       });
-    },
 
-    ArrayDetails: function (objA) {
-      console.log(objA);
-      piechart2(objA);
-    },
-  };
-})();
+        },
 
-var control = (function (bctrl, uctrl) {
-  var printPiehar = function () {
-    setTimeout(() => {
-      console.log("welcome");
-      var pieAtD = bctrl.pieArray();
-      uctrl.ArrayDetails(pieAtD);
-    }, 200);
-  };
+        ArrayDetails : function(objA){
+          
+            piechart2(objA);
 
-  var setUpEvent = function () {
-    // var pieAtDM=bctrl.pieArray();
-    // console.log(pieAtDM);
-    // uctrl.ArrayDetails(pieAtDM);
-    // printPiehar();
-    var dom = uctrl.getdomstrings();
-    console.log("hi");
-    var form = document.querySelector(".login");
-    form.onsubmit = function (e) {
-      e.preventDefault();
-
-      var verifyit = form.password.value;
-      verify(verifyit);
-      form.reset();
+        },
     };
 
-    //
+  })();
 
-    document.querySelector(dom.Add).addEventListener("click", function () {
-      document.querySelector(dom.AddMovie).classList.remove("d-none");
-      document.querySelector(dom.Add).classList.add("d-none");
-    });
+  var control = (function(bctrl,uctrl){
 
-    document.querySelector(dom.cancel).addEventListener("click", function () {
-      document.querySelector(dom.Add).classList.remove("d-none");
-      document.querySelector(dom.AddMovie).classList.add("d-none");
-    });
+    var sessions = bctrl.session_data();
+    var Movie_data = bctrl.pieArray();
 
-    var detailsForm = document.querySelector(dom.Details);
-    detailsForm.onsubmit = function (e) {
-      e.preventDefault();
-      var movieNmae = detailsForm.movieName.value;
-      var Description = detailsForm.movieDescription.value;
-      addmovie(movieNmae, Description);
-      detailsForm.reset();
+     var printPiehar = function(){
+       setTimeout(()=>{
+      var pieAtD=bctrl.pieArray();
+      uctrl.ArrayDetails(pieAtD);},1000);
+    
     };
 
-    document.querySelector(dom.displayMovie).addEventListener("click", ctrlED);
+    var setUpEvent = function(){
 
-    printPiehar();
-  };
+      var dom = uctrl.getdomstrings();
+      console.log('hi');
+      var form = document.querySelector('.login');
+      form.onsubmit = function(e){
+        e.preventDefault();
+        var verifyit = form.password.value;
+        verify(verifyit);
+        form.reset();
+      }
+      
+      getSession();
 
-  var addmovie = function (Name, Desp) {
-    var newMovie;
+      document.querySelector(dom.Add).addEventListener('click',function(){
+        document.querySelector(dom.AddMovie).classList.remove('d-none');
+        document.querySelector(dom.Add).classList.add('d-none');
+      });
 
-    newMovie = bctrl.addItem(Name, Desp);
-    uctrl.addMovie(newMovie);
-    printPiehar();
-  };
+      document.querySelector(dom.cancel).addEventListener('click',function(){
+        document.querySelector(dom.Add).classList.remove('d-none');
+        document.querySelector(dom.AddMovie).classList.add('d-none');
+      });
 
-  var verify = function (pass) {
-    if (pass === "1") uctrl.display();
-  };
+      var cal = document.querySelector(".cal")
+      cal.onsubmit= function(e){
+        e.preventDefault();
+          var date =cal.date.value
+        Createsession(date)
+        cal.reset();
+      }
 
-  var ctrlED = function (event) {
-    var itemid = event.target.parentNode.id;
+      document.querySelector(".selectedDate").addEventListener('click',SelectedDate)
+      
+      var detailsForm =document.querySelector(dom.Details);
+      detailsForm.onsubmit = function(e){
+        e.preventDefault();
+        var movieNmae = detailsForm.movieName.value;
+        var Description = detailsForm.movieDescription.value
+        addmovie(movieNmae,Description);
+        detailsForm.reset();
+      };
 
-    var type, idno, splitid;
-    splitid = itemid.split("-");
-    type = splitid[0];
-    idno = parseInt(splitid[1]);
+      document.querySelector(dom.displayMovie).addEventListener('click',ctrlED);
+      
+    };
 
-    if (type === "e") {
-      uctrl.editMovie(idno);
-      // bctrl.editMovie(idno);
-    } else if (type === "s") {
-      var [ename, edesp] = uctrl.editMovie2(idno);
-      var newMovie = bctrl.editDeatils(ename, edesp, idno);
-      // console.log(newMovie);
-      uctrl.update(newMovie);
-      printPiehar();
-    } else if (type === "d") {
-      bctrl.del(idno);
-      uctrl.del(idno);
+    var SelectedDate = function(){
+     var Seldate= document.querySelector(".selectSession").value;
+     moviesRef.doc(`"${Seldate}"`).get().then(function(doc) {
+       if (doc.exists) {
+          var movieNames = doc.data()["cinema"];
+          Movie_data.push(movieNames);
+          bctrl.UpdateMovies(Movie_data);
+          console.log(Movie_data)
+          uctrl.Display_movie(Movie_data)
+          printPiehar();
+      } else {
+          // doc.data() will be undefined in this case
+          alert("No such date!");
+      }
+  })
     }
-  };
 
-  return {
-    init: function (obj) {
-      uctrl.displayUser(obj);
-      // printPiehar();
-      setUpEvent();
-    },
-  };
-})(backcontrol, uicontrol);
+    var displaySession = function(){
+      
+      const myNode = document.querySelector(".session_form");
+            myNode.innerHTML = '';
+            var formHtml= ` <option></option>`;
+        myNode.insertAdjacentHTML('beforeend',formHtml);
+      
+      sessions.forEach(e=>{
+        var formHtml= `<option> ${e}</option>`;
+        myNode.insertAdjacentHTML('beforeend',formHtml);
+      })
+     }
 
-control.init(userdata);
+    var addmovie = function(Name,Desp){
+      var newMovie;
+      newMovie = bctrl.addItem(Name,Desp);
+      uctrl.addMovie(newMovie);
+      console.log(newMovie)
+      Movie_data[0].push(newMovie)
+      console.log(Movie_data)
+      printPiehar();
+    };
+     
+    
+    var verify = function(pass){
+      if(pass === '1')
+      uctrl.display();
+
+    };
+
+    var ctrlED = function(event){
+      var itemid =  event.target.parentNode.id;
+      
+      var type, idno,splitid;
+      splitid = itemid.split('-');
+      type = splitid[0];
+      idno = parseInt(splitid[1]);
+
+      if ( type === 'e')
+      {  
+         uctrl.editMovie(idno);
+          // bctrl.editMovie(idno);
+      }else if (type=== 's'){
+        console.log(idno)
+        var [ename,edesp]= uctrl.editMovie2(idno);
+        var newMovie = bctrl.editDeatils(ename,edesp,idno);
+        uctrl.update(newMovie);
+        printPiehar();
+        Movie_data = bctrl.pieArray();
+        console.log(Movie_data);
+      }else if ( type === 'd'){  
+        bctrl.del(idno);
+        uctrl.del(idno);
+        printPiehar();  
+        console.log(Movie_data)
+
+      };
+    
+
+    };
+
+    var getSession = function(){
+        sessionWeekendRef.get()
+        .then((e)=>{
+          var dt = e.docs;
+          dt=dt[0].data()["ses_arr"]; 
+          
+          bctrl.updateSession(dt)
+          sessions = bctrl.session_data();
+          displaySession();
+          
+        })
+        .catch(e => console.log(e))
+          
+      
+
+    }
+      //create a session and post it to firebase and also add session to drop down list
+    var Createsession = function(cal){
+      sessions.push(cal)
+      bctrl.updateSession(sessions);
+      sessions = bctrl.session_data();
+      displaySession();
+      sessionWeekendRef.doc("list").update({"ses_arr" : sessions}).then((a) => alert("session created")).catch( e => console.log(e))
+    }
+
+    return{
+       init: function(obj){
+        uctrl.displayUser(obj);
+        
+        da = moviesRef.get()
+    .then((ss) => {
+      d = ss.docs;
+      var data1={};
+     var z= d.forEach((i) => {
+        var y = i.id;
+        var x = i.data()
+        return x;
+      });
+     
+    })
+    .catch((err) => {
+      console.log("Error getting documents", err);
+    });
+        setUpEvent();
+    },  
+    };
+
+  })(backcontrol,uicontrol);
+
+  control.init(userdata);
+  
+
+
+
+  
+
+
+
+
+ 

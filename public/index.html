@@ -12,7 +12,8 @@
   <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-database.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>>
+  <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
+ 
 </head>
 
 <body>
@@ -52,11 +53,31 @@
 
 
 
-    <div class="mainpage d-none  pad">
+    <div class="mainpage  pad">
       <div class="alert alert-success pad animated fadeOut" role="alert">
         <strong>Well done!</strong> You successfully logged in.
       </div>
+      <form >
+      <div class="form-group sessions">
+        <label for="sel1">Select list:</label>
+        <select class="form-control session_form selectSession" id="Session_data">
+         
+        </select>
+      </div></form>
+      <button type="button" class="btn btn-primary cal_button selectedDate">submit</button>
 
+      <form class="cal move_R" >
+      <label for="start">Start date:</label>
+
+      <input type="date" id="start" name="date"
+             value=""
+             min="" max="">
+             <button type="submit" class="btn btn-primary cal_button">submit</button>
+            </form>
+
+      <div class="form-group mb-4">
+       
+    </div>
       <div class="container pad">
         <button type="button" class="btn btn-success addMovie">Add</button>
         <div class="container pad d-none addMovieDetails ">
