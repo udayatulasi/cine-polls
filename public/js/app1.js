@@ -40,7 +40,7 @@ function drawChart() {
   chart1.draw(data, options);
   chart2.draw(data, options);
 }
-// var newhtml = '<p>hi how are you</p>'
+
 
 var movies_1 = []
 movies = [{
@@ -141,7 +141,6 @@ function get_movies(d) {
 }
 
 function Userfunction(movies) {
-
   // display the movies
   displayMovies(movies);
 
@@ -158,7 +157,7 @@ function displayMovies(movies) {
   document.querySelector('.primary-submit').insertAdjacentHTML('afterend', html);
 
   for (var i = 0; i < movies.length; i++) {
-    newhtml = `<tr class = "table-width"><th scope="row">${movies[i].ID}</th><td>${movies[i].Name}</td><td>${movies[i].Description}</td><td><select id="choice-${i}" name="rating_ 1"><option selected value ="">Priority</option><option  value="1">priority-1</option><option value="2">priority-2</option><option value="3">priority-3</option></select></td></tr>`;
+    newhtml = `<tr class = "table-width"><th scope="row">${movies[i].id}</th><td>${movies[i].Name}</td><td>${movies[i].Description}</td><td><select id="choice-${i}" name="rating_ 1"><option selected value ="">Priority</option><option  value="1">priority-1</option><option value="2">priority-2</option><option value="3">priority-3</option></select></td></tr>`;
     document.querySelector('.table').insertAdjacentHTML('beforeend', newhtml);
 
   }
