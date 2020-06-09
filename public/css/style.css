@@ -62,3 +62,24 @@ label {
 .move_R{
 float: right;
 }
+
+table{
+    
+    table-layout:fixed; 
+    width:310px;
+}
+
+
+
+td.despSize{
+    word-break:break-all;
+    width: 30%;
+}
+
+ /* .desc > p{
+    color : yellow;
+    
+
+    
+}  */
+

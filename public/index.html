@@ -8,6 +8,7 @@
   <link href="/public/css/style.css" rel="stylesheet" type="text/css">
   <link href="/public/css/bootstrap.css" rel="stylesheet" type="text/css">
   <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+  
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-auth.js"></script>
@@ -57,17 +58,17 @@
       <div class="alert alert-success pad animated fadeOut" role="alert">
         <strong>Well done!</strong> You successfully logged in.
       </div>
-      <form >
+      <form class="selectedDate" >
       <div class="form-group sessions">
-        <label for="sel1">Select list:</label>
-        <select class="form-control session_form selectSession" id="Session_data">
+        <label for="sel1">Select Session Date:</label>
+        <select class="form-control session_form selectSession" name="Session_data">
          
         </select>
+      <button type="submit" class="btn btn-primary cal_button">submit</button>
       </div></form>
-      <button type="button" class="btn btn-primary cal_button selectedDate">submit</button>
 
       <form class="cal move_R" >
-      <label for="start">Start date:</label>
+      <label for="start">New Session End Date:</label>
 
       <input type="date" id="start" name="date"
              value=""
@@ -76,10 +77,10 @@
             </form>
 
       <div class="form-group mb-4">
-       
+  
     </div>
       <div class="container pad">
-        <button type="button" class="btn btn-success addMovie">Add</button>
+        <button type="button" class="btn btn-success d-none addMovie">Add</button>
         <div class="container pad d-none addMovieDetails ">
           <button type="button" class="btn btn-danger cancel">CANCEL</button>
           <form class="movieDetails pad">
@@ -98,17 +99,19 @@
         </div>
       </div>
 
-      <table class="table table-striped container">
+    
+      <table class="table table-striped container movieTable" >
         <thead>
           <tr>
-            <th>#</th>
-            <th>Movie</th>
-            <th>Description</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <!-- <th class="col-1">#</th> -->
+            <th >Movie</th>
+            <th >Description</th>
+            <th >Edit</th>
+            <th >Delete</th>
           </tr>
         </thead>
-        <tbody class='movie-list'>
+        
+        <tbody class='movie-list' id="mL" >
           <!-- <tr>
       <th scope="row">1</th>
       <td><p class="d-inline-block">marks</p><input class="form-control d-none" type="text" placeholder="Default input"> </td>
@@ -162,6 +165,8 @@
   </div>
 </body>
 
-<script src="/public/js/script.js"></script>
+<!-- <script src="./public/js/first.js"></script> -->
+
+<script src="./js/first.js"></script>
 
 </html>
