@@ -111,28 +111,19 @@ var control =(function(){
     var selectedSession =document.querySelector(".selectedDate");
     selectedSession.onsubmit =  function(e){
         e.preventDefault();
+        document.querySelector(domstrings.Add).classList.remove('d-none');
         sessDate = selectedSession.Session_data.value;
         users_collection.doc(`"${sessDate}"`).get()
      .then(function(doc){
+     
         if(doc.exists){
-          userNames = doc.data()["user"];
-          console.log(userNames)
+          userNames = doc.data()["users"];
           const myNode6 = document.querySelector(".user_list");
           myNode6.innerHTML = '';
           if(userNames.length)
           {
             displayUserName(userNames)
           }}
-          else{
-            var htmlUser = `<tr>
-            <th></th>
-            <td>nousers</td>
-            <td>~</td>
-            <td>~</td>
-            <td>~</td>
-          </tr>`
-          document.querySelector(".user_list").insertAdjacentHTML('beforeend',htmlUser);
-        }
      })
         moviesRef.doc(`"${sessDate}"`).get()
         .then(function(doc) {
@@ -350,9 +341,9 @@ var control =(function(){
           var userHtml=`<tr>
           <th scope="row">${i+1}</th>
           <td>${e.user_name}</td>
-          <td>${e.p1}</td>
-          <td>${e.p2}</td>
-          <td>${e.p3}</td>
+          <td>${e.p_1}</td>
+          <td>${e.p_2}</td>
+          <td>${e.p_3}</td>
           </tr>`;  
         document.querySelector(domstrings.displayUser).insertAdjacentHTML('beforeend',userHtml);
         })
