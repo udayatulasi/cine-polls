@@ -4,167 +4,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>admin</title>
-  <link href="/public/css/style.css" rel="stylesheet" type="text/css">
-  <link href="/public/css/bootstrap.css" rel="stylesheet" type="text/css">
-  <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
-  
+  <title>Movie Statistics</title>
+  <!-- Bootstrap links  -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+  </script>
+  <link rel="stylesheet" type="text/css" href="./css/user-style.css">
+  <!-- Firebase links are given here below -->
   <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-database.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-firestore.js"></script>
+  <!-- FIrebase links ends here -->
+
+  <!-- <script type="text/javascript" src="app1.js"></script>  -->
 
 </head>
 
 <body>
 
-  <div class="container">
-
-
-    <nav class="navbar navbar-light bg-light">
-      <a class="navbar-brand">Admin</a>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="navbar-brand btn" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-              <a class="navbar-brand btn" href="#">Stats</a>
-            </li>
-
-          </ul>
+  <div class="container pad-1">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">User</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ml-auto">
+          <a class="nav-item nav-link active" href="#">Polls<span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link active" href="#">Statistics</a>
         </div>
-      </nav>
+      </div>
     </nav>
-    <form class="form-inline login pad ">
+    <br>
+
+    <form class="form-inline primary-form" id="userName">
       <div class="form-group mb-2">
         <label for="staticEmail2" class="sr-only">Email</label>
-        <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="admin@polls.com">
+        <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="Password">
       </div>
       <div class="form-group mx-sm-3 mb-2">
-        <label for="inputPassword2" class="sr-only password">Password</label>
-        <input type="password" class="inputPassword" id="inputPassword" name="password" placeholder="Password">
+        <label for="inputPassword2" class="sr-only">Password</label>
+        <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+        <span id="error" class="error-class"></span>
       </div>
-      <button type="submit" class="btn btn-primary verify   mb-2" id="verify"> verify</button>
+
+
     </form>
+    <br>
+    <br>
+    <button type="button" class="btn btn-primary primary-submit">Submit</button>
 
-
-
-    <div class="mainpage d-none  pad">
-      <div class="alert alert-success pad animated fadeOut" role="alert">
-        <strong>Well done!</strong> You successfully logged in.
-      </div>
-      <form class="selectedDate" >
-      <div class="form-group sessions">
-        <label for="sel1">Select Session Date:</label>
-        <select class="form-control session_form selectSession" name="Session_data">
-         
-        </select>
-      <button type="submit" class="btn btn-primary cal_button">submit</button>
-      </div></form>
-
-      <form class="cal move_R" >
-      <label for="start">New Session End Date:</label>
-
-        <input type="date" id="start" name="date" value="" min="" max="">
-        <button type="submit" class="btn btn-primary cal_button">submit</button>
-      </form>
-
-      <div class="form-group mb-4">
-  
-    </div>
-      <div class="container pad">
-        <button type="button" class="btn btn-success d-none addMovie">Add</button>
-        <div class="container pad d-none addMovieDetails ">
-          <button type="button" class="btn btn-danger cancel">CANCEL</button>
-          <form class="movieDetails pad">
-            <div class="form-group  d-inline-block">
-              <label for="formGroupExampleInput">movie name</label>
-              <input type="text" class="form-control" id="formGroupExampleInput" name='movieName'
-                placeholder="Example input">
-            </div>
-            <div class="form-group">
-              <label for="formGroupExampleInput2">Description</label>
-              <textarea type="text" class="form-control" id="formGroupExampleInput2" name='movieDescription'
-                placeholder="Another input" rows="4" cols="50"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary mb-2">submit</button>
-          </form>
-        </div>
-      </div>
-
-    
-      <table class="table table-striped container movieTable" >
-        <thead>
-          <tr>
-            <!-- <th class="col-1">#</th> -->
-            <th >Movie</th>
-            <th >Description</th>
-            <th >Edit</th>
-            <th >Delete</th>
-          </tr>
-        </thead>
-        
-        <tbody class='movie-list' id="mL" >
-          <!-- <tr>
-      <th scope="row">1</th>
-      <td><p class="d-inline-block">marks</p><input class="form-control d-none" type="text" placeholder="Default input"> </td>
-      <td><p class="d-inline-block">Closes an alert by removing it from the DOM. If the .fade and .show classes are present on the element, the alert will fade out before it is removed.</p><input class="form-control d-none" type="text" placeholder="Default input"></td>
-      <td><button type="button" class="btn btn-warning d-inline-block"><ion-icon class="del" name="create-outline"></ion-icon></button><button type="button" class="btn btn-success d-none"><ion-icon class="del"name="checkmark-circle-outline"></ion-icon></button> </td>
-      <td> <button type="button" class="btn btn-danger"><ion-icon class="del"name="close-circle-outline"></ion-icon></button></td>
-    </tr> -->
-        </tbody>
-      </table>
-      <div class="container pad2">
-        <div class="row">
-          <div class="col-sm d-inline-block">
-            <div id="piechart1"></div>
-          </div>
-          <div class="col-sm d-inline-block">
-
-            <div id="piechart2"></div>
-          </div>
-          <div class="col-sm d-inline-block">
-
-            <div id="piechart3"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="container">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>user Name</th>
-              <th>movie 1</th>
-              <th>movie 2</th>
-              <th>movie 3</th>
-            </tr>
-          </thead>
-          <tbody class="user_list">
-            <!-- <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td> 2</td>
-        <td> 3</td>
-      </tr> -->
-
-          </tbody>
-        </table>
-
-      </div>
-    </div>
-  </div>
 </body>
-
-<!-- <script src="./public/js/first.js"></script> -->
-
-<script src="./js/script.js"></script>
+<script type="text/javascript" src="./js/app1.js"></script>
 
 </html>
